@@ -1,0 +1,96 @@
+.modal {
+    &-mask {
+        position: fixed;
+        z-index: 9998;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: table;
+        transition: opacity 0.3s ease;
+    }
+    &-wrapper {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    &-container {
+        width: 80%;
+        margin: 0px auto;
+        padding: 20px 30px;
+        background-color: #fff;
+        border-radius: 2px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+        transition: all 0.3s ease;
+        font-family: Helvetica, Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &-header h3 {
+        margin-top: 0;
+        color: #42b983;
+        text-align: center;
+    }
+
+    &-body {
+        margin: 20px 0;
+        color: black;
+    }
+
+    &-default-button {
+        text-align: center;
+        margin: 0 auto;
+        margin-top: 5px;
+        width: 150px;
+        height: 40px;
+        background-color: $ThirdFontColor;
+        cursor: pointer;
+        &:hover {
+            background-color: darken($color: $ThirdFontColor, $amount: 10);
+        }
+        &:active {
+            background-color: darken($color: $ThirdFontColor, $amount: 20);
+        }
+    }
+
+    &-enter {
+        opacity: 0;
+    }
+
+    &-leave-active {
+        opacity: 0;
+    }
+
+    &-enter &-container,
+    &-leave-active &-container {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+    &__table {
+        margin: 0 auto;
+    }
+    &__table,
+    &__tr,
+    &__td {
+        border: 1px solid;
+        font-family: $RegularFontFamily;
+        text-transform: uppercase;
+    }
+    &__td {
+        text-align: center;
+        min-width: 100px;
+        @include _768 {
+            min-width: 60px;
+        }
+    }
+    &__caption {
+        margin-top: 0;
+        color: #42b983;
+        font-size: 30px;
+        text-transform: uppercase;
+        font-family: oswald-regular;
+    }
+}

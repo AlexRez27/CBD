@@ -1,0 +1,95 @@
+// @function em($pixels, $context: $browser-context) {
+//     @return #{$pixels/$context}em;
+// }
+
+.accordion {
+    max-width: 592px;
+    margin: 0 auto;
+    background-color: #f7f8f3;
+    margin-bottom: 150px;
+    &__h2 {
+        width: 100%;
+        text-align: center;
+        text-transform: uppercase;
+        font-family: $RegularFontFamily;
+        font-size: 30px;
+        color: #1c1c1b;
+        letter-spacing: 0.2em;
+        margin-bottom: 46px;
+    }
+    &__details {
+        border-radius: 5px;
+    }
+    &__answer {
+        font-family: $LightFontFamily;
+        font-size: $MainFontSize;
+        color: #000000;
+        letter-spacing: 0.04em;
+        line-height: 2.22em;
+        margin-left: 33px;
+        //background-color: #fff;
+    }
+    &__trigger {
+        cursor: pointer;
+        height: 79px;
+        outline: none;
+        &:hover {
+            background-color: lighten($color: #dbff76, $amount: 2);
+        }
+        &:active {
+            background-color: darken($color: #dbff76, $amount: 15);
+        }
+    }
+    &__text {
+        font-size: $MainFontSize;
+        font-family: $LightFontFamily;
+        color: $ThirdFontColor;
+        letter-spacing: $MainLetterSpacing;
+        //position: relative;
+    }
+    &__trigger {
+        width: 100%;
+        text-align: left;
+        background-color: transparent;
+        border: none;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        border-top: 2px solid #eaedde;
+        border-bottom: 2px solid #eaedde;
+    }
+    &__icon {
+        display: block;
+        font-size: 24px;
+        transition: transform 0.2s ease;
+        color: #6e774a;
+    }
+    // &__details {
+    //     overflow: hidden;
+    //     background-color: whitesmoke;
+    // }
+}
+
+.accordion-item-enter-active,
+.accordion-item-leave-active {
+    will-change: height;
+    transition: height 0.2s ease;
+}
+.accordion-item-enter,
+.accordion-item-leave-to {
+    height: 0 !important;
+}
+.social {
+    &:hover {
+        color: darken($color: $ThirdFontColor, $amount: 20);
+    }
+    &:active {
+        color: darken($color: $ThirdFontColor, $amount: 40);
+    }
+}
+// .fa-plus:before {
+//     content: "+";
+// }
+// .fa-minus:before {
+//     content: "-";
+// }

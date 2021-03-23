@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="imgo/favicon.ico" type="image/x-icon">
+    <script src="https://unpkg.com/vue-star-rating/dist/VueStarRating.umd.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
+    <link rel="stylesheet" href="styles/css/main.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <main>
+        <div id="app">
+            <nav class="nav">
+                <div v-scroll="handleScroll" class="nav__container">
+                    <ul class="nav__list">
+                        <li class="nav__item item-active" v-for="(item,i) in itemsLeftDesktop" :key="i"><span
+                                v-if="item.show"></span><a v-scroll="handleScroll"
+                                @click="clickedLine(itemsLeftDesktop,i)" :href="link(i)">
+                                {{
+                                item.name }}
+                            </a>
+                        </li>
+                    </ul>
+                    <modal :baskets="cart" v-if="showModal" @close="showModal = false"></modal>
+                    <login @close-login="closeLogin" v-if="showLogin" @close="showLogin = false"></login>
+                    <div class="nav__burger">
+                        <div class="nav__icons">
+                            <i v-if="!show" @click="show = !show" class="fas fa-bars menu"></i>
+                            <i v-else @click="show = !show" class="fas fa-times close"></i>
+                            <ul class="nav__inter">
+                                <li class="nav__item " @click="showLogin = !showLogin"><i v-if="login == 'login'"
+                                        class="fas top-icons fa-sign-in-alt"></i>
+                                    <span class="nav__login" v-else>{{ login }}</span>
+                                </li>
+                                <li @click="showInput" class="nav__item "><i class="fas top-icons fa-search"></i></li>
+                                <li class="nav__item " @click="showModal = !showModal"><i
+                                        class="fas top-icons fa-shopping-basket"></i></li>
+                            </ul>
+                        </div>
+                        <ul v-if="show" class="nav__list nav__list--burger">
+                            <li class="nav__item nav__item--burger" v-for="(item,i) in itemsLeftDesktop" :key="i"><a
+                                    :href="link(i)">{{ item.name }} </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="nav__logo">CBD</div>
+                    <ul class="nav__list">
+                        <li @click="showLogin = !showLogin;" class="nav__item nav__item--border">{{ login }}</li>
+                        <li @click="showInput" class="nav__item nav__item--border"><i class="fas fa-search"></i>search
+                        </li>
+                        <li @click="showModal = !showModal" class="nav__item nav__item--border">cart({{ totalCount }})
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div v-if="showSearch" class="search">
+                <form @submit.prevent="searchInfo" action="" class="search__form">
+                    <input required ref="input" v-model="query" type="text" class="search__input">
+                    <button type="submit" class="search__btn"><i class="fas top-icons fa-search"></i></button>
+                </form>
+            </div>
+            <section id="home" class="home">
+                <div class="empty"></div>
+                <div class="home__content">
+                    <h1 class="home__title">Enhancing Life
+                        Excelling in Care</h1>
+                    <p class="home__slogan">Choose Wisely. Choose CBD.</p>
+                    <a href="#products" class="home__start">Start Shopping</a>
+                    <div class="home__see"><a href="#products">See all products <i class="icon-arrow right"></i> </a>
+                    </div>
+                </div>
+                <div class="home__sign">CBD Potion health</div>
+                <div class="home__down"><a href="#info"><i class="fas fa-chevron-down"></i></a></div>
+            </section>
+
+            <section id="info" class="cbdinfo">
+                <div class="cbdinfo__header">
+                    <h2 class="cbdinfo__title">We are what we are</h2>
+                    <img src="imgo/icons-1.jpg" class="cbdinfo__icons cbdinfo__icons--1" alt="">
+                    <img src="imgo/icons-2.jpg" class="cbdinfo__icons" alt="">
+                </div>
+                <div class="tabs">
+                    <div class="tabs__list">
+                        <div class="tabs__item" v-for="(tab,i) in tabs" :key="i"><span
+                                @click="activetab=i+1;clickedLine(tabs, i)"
+                                v-bind:class="[ activetab === i+1 ? 'active' : '' ]"
+                                :class="{tabs__item__active: tab.show}">
+                                <span class="tabs__name">{{tab.name}}</span></span>
+                        </div>
+                    </div>
+                    <div v-if="activetab === 1" class="tabs__content">
+                        <div class="tabs__text">
+                            <h2 class="tabs__title">WHAT IT IS AND HOW
+                                IT WORKS</h2>
+                            <p class="tabs__descr">CBD is short for cannabidiol. It is a phytocannabinoid found in hemp
+                                and known for supporting the body and mind in many ways.* Charlotte’s Web products have
+                                cannabinoids with CBD extract.
+                            </p>
+                            <p class="tabs__descr">Not to be confused with oil from hemp seeds (which doesn’t contain
+                                cannabinoids), CBD
+                                comes from the flowers and leaves of the hemp plant.</p>
+                            <p class="tabs__descr">Why does CBD work? The human body has a vast network of receptors,
+                                the endocannabinoid
+                                system.</p>
+                        </div>
+                        <div>
+                            <img class="tabs__img" src="imgo/what-1.jpg" alt="mountain">
+                            <img class="tabs__img" src="imgo/what-2.jpg" alt="field">
+                        </div>
+                    </div>
+
+                    <div v-if="activetab === 2" class="tabs__content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur doloremque hic voluptate
+                            nesciunt numquam, eos ullam non temporibus, labore ea ad modi quas accusamus reprehenderit
+                            impedit tempore illo pariatur sunt!</p>
+                    </div>
+                    <div v-if="activetab === 3" class="tabs__content">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente eius, dicta id distinctio
+                            vero accusantium temporibus nemo consequuntur delectus doloribus ad in, iusto assumenda esse
+                            consequatur voluptates suscipit. Reprehenderit, repellat.
+                            Eveniet, placeat cupiditate dicta dolorem recusandae voluptatibus perspiciatis error
+                            distinctio similique sunt aliquam neque sed perferendis illo. Explicabo necessitatibus
+                            voluptatem ipsa magni! Autem fugiat nisi asperiores pariatur, blanditiis error neque?
+                            Nisi adipisci quas ipsa, hic sequi minus repudiandae culpa incidunt, consectetur laboriosam
+                            obcaecati perspiciatis magni? Assumenda inventore, aut commodi ea explicabo nihil earum
+                            possimus modi, a quibusdam dolorem. Fuga, cupiditate?</p>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="products" class="products">
+                <h2 class="products__title">CBD Featured Products</h2>
+                <div class="next"><i class="icon-arrow"></i></div>
+                <div class="prev"><i class="icon-left"></i></div>
+                <div class="slider-cont">
+                    <div class="products__slider">
+                        <product-item @add-to-cart="incrementTotal(content)" v-for="(content,i) in contents"
+                            :contents="content" :key="i"></product-item>
+                    </div>
+                </div>
+            </section>
+
+            <section id="FAQS" class="accordion">
+                <h2 class="accordion__h2">Frequently asked questions</h2>
+                <accordion :content="content"></accordion>
+            </section>
+
+            <section class="testimonials">
+                <div class="testimonials__content">
+                    <div class="empty"></div>
+                    <div class="testimonials__wrapper">
+                        <div class="testimonials__slider">
+                            <div class="testimonials__slide">
+                                <star-rating class="testimonials__rate" :border-width="0" :rounded-corners="false"
+                                    :show-rating="false" :star-size="20" active-color="#6e774a"
+                                    :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]">
+                                </star-rating>
+                                <p class="testimonials__review">I have tried another product after using this one
+                                    successfully,
+                                    and I am Back for good! The flavour, the lightness of the oil and the health
+                                    benefits I
+                                    have
+                                    gotten with this oil are amazing!</p>
+                                <div class="testimonials__sign">
+                                    <span class="testimonials__client">mark j.</span>
+                                </div>
+                            </div>
+                            <div class="testimonials__slide">
+                                <star-rating class="testimonials__rate" :border-width="0" :rounded-corners="false"
+                                    :show-rating="false" :star-size="20" active-color="#6e774a"
+                                    :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]">
+                                </star-rating>
+                                <p class="testimonials__review">Lorem ipsum dolor sit amet consectetur, adipisicing
+                                    elit.
+                                    Qui odio, vel voluptate excepturi ullam quas perferendis accusamus vitae nemo quos
+                                    nam
+                                    reprehenderit. Harum rem odit dolorum.</p>
+                                <div class="testimonials__sign">
+                                    <span class="testimonials__client">batman</span>
+                                </div>
+                            </div>
+                            <div class="testimonials__slide">
+                                <star-rating class="testimonials__rate" :border-width="0" :rounded-corners="false"
+                                    :show-rating="false" :star-size="20" active-color="#6e774a"
+                                    :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]">
+                                </star-rating>
+                                <p class="testimonials__review">Lorem ipsum, dolor sit amet consectetur adipisicing
+                                    elit. Quas hic cum magnam. Ad odit fugit magni explicabo commodi voluptates qui
+                                    dolores cum nesciunt tenetur cupiditate dolor, tempore amet perspiciatis expedita?
+                                </p>
+                                <div class="testimonials__sign">
+                                    <span class="testimonials__client">superman</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="home__sign home__sign--testemonials">CBD every day</div>
+                    <div class="testimonials__footer">
+                        <div class="testimonials__arrows"><i class="testimonials__prev icon-left"></i></div>
+                        <div class="testimonials__arrows"><i class="testimonials__next icon-arrow"></i></div>
+                    </div>
+                </div>
+            </section>
+
+            <footer id="contact us" class="contact">
+                <div class="contact__list">
+                    <ul class="contact__items">
+                        <li class="contact__item"><a href="#">Privacy Policy</a></li>
+                        <li class="contact__item"><a href="#">Terms of Use </a></li>
+                        <li class="contact__item"><a href="#">Return Policy</a></li>
+
+                        <li class="contact__item contact__item--adaptive"><a href="#">SHIPPING INFO</a></li>
+                        <li class="contact__item contact__item--adaptive"><a href="#">RETURNS / EXCHANGES</a></li>
+                        <li class="contact__item contact__item--adaptive"><a href="#">CONTACT</a></li>
+                    </ul>
+                </div>
+                <div class="contact__center">
+                    <div class="nav__logo nav__logo--contact">cbd</div>
+                    <div class="contact__social">
+                        <a target="_blank" href="https://www.facebook.com/"><i class="social fab fa-facebook-f"></i></a>
+                        <a target="_blank" href="https://twitter.com/"><i class="social fab fa-twitter"></i></a>
+                        <a target="_blank" href="https://www.youtube.com/watch?v=Szc_amS2D88&ab_channel=LenaKukacrew"><i
+                                class="social fab fa-youtube"></i></a>
+                    </div>
+                    <div class="contact__separator"></div>
+                    <contact></contact>
+                    <p class="contact__copyright">© 2021. CbD health.</p>
+                </div>
+                <div class="contact__list contact__list--adaptive">
+                    <ul class="contact__items">
+                        <li class="contact__item"><a href="#">SHIPPING INFO</a></li>
+                        <li class="contact__item"><a href="#">RETURNS / EXCHANGES</a></li>
+                        <li class="contact__item"><a href="#">CONTACT</a></li>
+                    </ul>
+                </div>
+            </footer>
+
+        </div>
+    </main>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

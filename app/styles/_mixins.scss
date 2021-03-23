@@ -1,0 +1,30 @@
+@mixin _375 {
+    @media screen and (max-width: 375px) {
+        @content;
+    }
+}
+@mixin _768 {
+    @media screen and (max-width: 768px) {
+        @content;
+    }
+}
+@mixin _992 {
+    @media screen and (max-width: 992px) {
+        @content;
+    }
+}
+@mixin _1200 {
+    @media screen and (max-width: 1200px) {
+        @content;
+    }
+}
+
+@mixin line() {
+    content: "";
+    width: 100px;
+    height: 2px;
+    background-color: $MainFontColor;
+    top: 57%;
+    left: -73%;
+    position: absolute;
+}

@@ -1,0 +1,94 @@
+.testimonials {
+    width: 100%;
+    height: 800px;
+    background-image: url("../../imgo/bg-footer.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        max-width: 770px;
+        margin: 0 auto;
+    }
+    &__wrapper {
+        width: 100%;
+    }
+    &__slider {
+        text-align: center;
+    }
+    &__slide {
+        width: 800px;
+    }
+    &__rate {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 40px;
+    }
+    &__review {
+        font-family: $LightFontFamily;
+        font-size: 22px;
+        letter-spacing: 0.2em;
+        line-height: 1, 82em;
+        color: $MainFontColor;
+        margin-bottom: 36px;
+        width: 100%;
+    }
+    &__client {
+        text-transform: uppercase;
+        color: $MainFontColor;
+        font-family: $RegularFontFamily;
+        font-size: $SecondFontSize;
+        letter-spacing: 0.2em;
+        position: relative;
+        &:before {
+            @include line;
+            width: 45px;
+            top: 50%;
+            left: -70px;
+        }
+    }
+    &__footer {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 260px;
+        height: 100px;
+    }
+    &__arrows {
+        font-size: 25px;
+        border: 1px solid $MainFontColor;
+        border-bottom: none;
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $MainFontColor;
+        padding-right: 25px;
+        margin-top: 13px;
+        @include _992 {
+            display: none;
+        }
+    }
+    &__next {
+        border-left: none;
+    }
+    &__prev,
+    &__next {
+        cursor: pointer;
+        &:hover {
+            transform: scale(1.3);
+        }
+        &:active {
+            color: darken($color: $ThirdFontColor, $amount: 30);
+        }
+    }
+}
+
+.slick-slide {
+    outline: none;
+}

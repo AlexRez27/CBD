@@ -1,0 +1,195 @@
+.contact {
+    max-width: 1170px;
+    display: flex;
+    justify-content: space-between;
+    color: $ThirdFontColor;
+    margin: 0 auto;
+    margin-top: 170px;
+    @include _768 {
+        flex-direction: column;
+        margin-top: 30px;
+    }
+    &__list {
+        width: 32.2%;
+        border-top: 1px solid $ThirdFontColor;
+        border-bottom: 1px solid $ThirdFontColor;
+        padding-bottom: 15px;
+        @include _768 {
+            width: 100%;
+            margin-bottom: 60px;
+        }
+        &--adaptive {
+            @include _768 {
+                display: none;
+            }
+        }
+    }
+    &__items {
+        margin-top: 99px;
+        list-style: none;
+        @include _768 {
+            margin-top: 15px;
+        }
+    }
+    &__item {
+        text-transform: uppercase;
+        font-family: $LightFontFamily;
+        font-size: 14px;
+        letter-spacing: $MainLetterSpacing;
+        text-align: center;
+        &:hover {
+            background-color: #585555;
+        }
+        &:active {
+            background-color: darken($color: #585555, $amount: 10);
+        }
+        &:hover a {
+            color: lighten($color: $ThirdFontColor, $amount: 40);
+        }
+        &--adaptive {
+            display: none;
+            @include _768 {
+                display: block;
+            }
+        }
+    }
+    &__item ~ &__item {
+        margin-top: 28px;
+    }
+    &__item a {
+        color: $ThirdFontColor;
+    }
+    &__center {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: -20px;
+    }
+    &__social {
+        width: 181px;
+        display: flex;
+        justify-content: space-between;
+    }
+    &__social a {
+        color: $ThirdFontColor;
+    }
+    &__separator {
+        height: 55px;
+        width: 2px;
+        background-color: $ThirdFontColor;
+        margin: 40px 0 29px 0;
+    }
+    &__form {
+        margin-bottom: 62px;
+        @include _375 {
+            width: 100%;
+        }
+    }
+    &__legend {
+        color: #000;
+        font-family: $RegularFontFamily;
+        text-transform: uppercase;
+        font-size: $MainFontSize;
+        letter-spacing: 0.15em;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    &__subscribe {
+        display: flex;
+        justify-content: center;
+        border: 2px solid #ced6af;
+        height: 60px;
+        width: 370px;
+        @include _375 {
+            flex-direction: column;
+            border: none;
+            width: 100%;
+            height: 120px;
+        }
+    }
+    &__email {
+        width: 70%;
+        border: none;
+        height: 100%;
+        background-color: #f7f8f3;
+        outline: none;
+        padding-left: 33px;
+        font-family: $LightFontFamily;
+        color: $ThirdFontColor;
+        font-size: 16px;
+        letter-spacing: 0.25em;
+        margin-left: -5px;
+        &:hover {
+            background-color: lighten($color: $ThirdFontColor, $amount: 40);
+        }
+        &:focus,
+        &:focus::placeholder {
+            background-color: darken($color: $ThirdFontColor, $amount: 20);
+            color: $MainFontColor;
+        }
+        @include _375 {
+            border: 2px solid #ced6af;
+            width: 100%;
+            margin-bottom: 2px;
+        }
+    }
+    &__submit {
+        width: 29%;
+        border: none;
+        height: 100%;
+        background-color: #f7f8f3;
+        outline: none;
+        color: $ThirdFontColor;
+        padding-right: 14px;
+        cursor: pointer;
+
+        @include _375 {
+            width: 50%;
+            border: 2px solid #ced6af;
+            margin: 0 auto;
+        }
+    }
+    &__btn {
+        height: 90%;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        border-left: 2px solid #ced6af;
+        &:hover i {
+            transform: scale(1.5);
+        }
+        &:active i {
+            color: darken($color: $ThirdFontColor, $amount: 20);
+        }
+        @include _375 {
+            border: none;
+        }
+    }
+    &__copyright {
+        margin-bottom: 39px;
+        font-family: $LightFontFamily;
+        font-size: 11px;
+        color: $ThirdFontColor;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+    }
+}
+.invalid {
+    color: #f00606;
+    border-bottom: 1px solid #f00606;
+}
+
+.flash {
+    font-family: $RegularFontFamily;
+    font-size: 24px;
+    text-align: center;
+    transition: all 1s ease;
+    &--red {
+        color: red;
+    }
+    &--green {
+        color: green;
+    }
+}
