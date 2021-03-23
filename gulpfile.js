@@ -87,7 +87,7 @@ exports.minimg = minimization;
 exports.cleanimg = cleanimg;
 exports.build = build;
 
-exports.reopimg = series(cleanimg, cleanstyles, cleanhtml, cleanjs, minimization)
+exports.cleanProject = series(cleanimg, cleanstyles, cleanhtml, cleanjs, minimization)
 
 exports.default = parallel(styles, js, browserSync, watching)
 // "node_modules/jquery/dist/jquery.min.js"
